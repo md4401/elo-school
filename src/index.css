@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   CSS VARIABLES — dark palette (dark mode = default)
+   ============================================================ */
+
+:root {
+  --dark-50:  #f9fafb;
+  --dark-100: #f3f4f6;
+  --dark-200: #e5e7eb;
+  --dark-300: #d1d5db;
+  --dark-400: #9ca3af;
+  --dark-500: #6b7280;
+  --dark-600: #4b5563;
+  --dark-700: #374151;
+  --dark-800: #1f2937;
+  --dark-900: #111827;
+  --dark-950: #030712;
+}
+
+/* Light mode — invert the palette to slate tones */
+html.light {
+  --dark-50:  #0f172a;
+  --dark-100: #1e293b;
+  --dark-200: #334155;
+  --dark-300: #475569;
+  --dark-400: #64748b;
+  --dark-500: #94a3b8;
+  --dark-600: #cbd5e1;
+  --dark-700: #e2e8f0;
+  --dark-800: #f8fafc;
+  --dark-900: #f1f5f9;
+  --dark-950: #ffffff;
+}
+
+@layer base {
+  :root {
+    --color-amber: #F59E0B;
+    --color-electric: #60A5FA;
+  }
+
+  body {
+    @apply bg-dark-950 text-dark-100 antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * { @apply box-border; }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--dark-900); }
+  ::-webkit-scrollbar-thumb { background: var(--dark-600); border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--dark-500); }
+}
+
+@layer components {
+  /* ─── Card ─── */
+  .card {
+    @apply bg-dark-800 border border-dark-700 rounded-2xl p-5;
+  }
+
+  /* ─── Buttons ─── */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-dark-900 font-semibold rounded-xl transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-amber-500/50 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-dark-700 hover:bg-dark-600 text-dark-100 font-medium rounded-xl border border-dark-600 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-dark-500/50 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 font-medium rounded-xl border border-red-500/20 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-500/50;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 text-dark-400 hover:text-dark-100 hover:bg-dark-800 font-medium rounded-xl transition-all duration-150 focus:outline-none;
+  }
+
+  /* ─── Form fields ─── */
+  .input {
+    @apply w-full bg-dark-900 border border-dark-700 rounded-xl px-3 py-2 text-sm text-dark-100 placeholder-dark-500
+    focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500/50
+    disabled:opacity-50 disabled:cursor-not-allowed transition-colors;
+  }
+
+  .select {
+    @apply w-full bg-dark-900 border border-dark-700 rounded-xl px-3 py-2 text-sm text-dark-100
+    focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500/50
+    disabled:opacity-50 disabled:cursor-not-allowed transition-colors appearance-none cursor-pointer;
+  }
+
+  .textarea {
+    @apply w-full bg-dark-900 border border-dark-700 rounded-xl px-3 py-2 text-sm text-dark-100 placeholder-dark-500
+    focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500/50
+    disabled:opacity-50 disabled:cursor-not-allowed transition-colors resize-none;
+  }
+
+  .label {
+    @apply block text-xs font-medium text-dark-400 mb-1.5;
+  }
+
+  /* ─── Sidebar ─── */
+  .sidebar-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-dark-400 hover:text-dark-100 hover:bg-dark-700
+    transition-all duration-150 font-medium text-sm;
+  }
+
+  .sidebar-link.active {
+    @apply bg-amber-500/10 text-amber-400 border border-amber-500/20;
+  }
+
+  /* ─── Tabs ─── */
+  .tab {
+    @apply px-4 py-2 text-sm font-medium text-dark-400 hover:text-dark-200 transition-colors relative;
+  }
+
+  .tab.active {
+    @apply text-amber-400;
+  }
+
+  .tab.active::after {
+    content: '';
+    @apply absolute bottom-0 left-0 right-0 h-0.5 bg-amber-400 rounded-full;
+  }
+
+  /* ─── Badges (grade status) ─── */
+  .badge-approved {
+    @apply text-green-400 bg-green-400/10 border border-green-400/20 text-xs font-medium px-2 py-0.5 rounded-full;
+  }
+
+  .badge-recovery {
+    @apply text-amber-400 bg-amber-400/10 border border-amber-400/20 text-xs font-medium px-2 py-0.5 rounded-full;
+  }
+
+  .badge-failed {
+    @apply text-red-400 bg-red-400/10 border border-red-400/20 text-xs font-medium px-2 py-0.5 rounded-full;
+  }
+
+  /* ─── XP bar ─── */
+  .xp-bar {
+    @apply w-full bg-dark-700 rounded-full overflow-hidden;
+  }
+
+  .xp-fill {
+    @apply h-full bg-gradient-to-r from-amber-500 to-amber-400 rounded-full transition-all duration-500;
+  }
+
+  /* ─── Toggle button fix (centered circle) ─── */
+  .toggle-btn {
+    @apply relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent
+    transition-colors duration-200 focus:outline-none;
+  }
+
+  .toggle-btn-circle {
+    @apply pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0
+    transition duration-200 ease-in-out;
+  }
+}
+
+/* ============================================================
+   LIGHT MODE — extra overrides for elements using inline styles
+   or patterns the CSS-variable approach misses
+   ============================================================ */
+
+html.light {
+  color-scheme: light;
+}
+
+/* Gradient backgrounds used in Login */
+html.light .from-dark-800 { --tw-gradient-from: #f8fafc; }
+html.light .via-dark-900  { --tw-gradient-via: #f1f5f9; }
+html.light .to-dark-950   { --tw-gradient-to: #e2e8f0; }
+
+/* bg-gradient-to-br that includes dark shades */
+html.light .bg-gradient-to-br {
+  background: linear-gradient(to bottom right, var(--dark-950), var(--dark-900));
+}
+
+/* Shadow adjustments for light mode */
+html.light .shadow-card,
+html.light .shadow-card-hover {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+}
