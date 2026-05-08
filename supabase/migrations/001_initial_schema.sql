@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS classes (
 
 -- Add FK from profiles.class_id now that classes exists
 ALTER TABLE profiles
-  ADD CONSTRAINT IF NOT EXISTS fk_profiles_class
+  ADD CONSTRAINT fk_profiles_class
   FOREIGN KEY (class_id) REFERENCES classes(id) ON DELETE SET NULL
   NOT VALID;
 
